@@ -3,9 +3,29 @@ using UnityEngine;
 
 public class Cities : MonoBehaviour
 {
-    private List<City> citiesList = new List<City>();
+    public GameObject cityPrefab;
 
+    public int CitiesCount;
+    
+    private List<City> citiesList = new List<City>();
+    
     private void Start()
+    {
+        GenerateCities();
+        
+        CacheCities();
+    }
+
+    private void GenerateCities()
+    {
+        int count = 0;
+        while (count++ < CitiesCount)
+        {
+            Instantiate(cityPrefab, transform);
+        }
+    }
+
+    private void CacheCities()
     {
         foreach (var city in GetComponentsInChildren<City>())
         {
