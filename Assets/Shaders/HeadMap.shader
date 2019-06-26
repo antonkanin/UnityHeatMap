@@ -35,8 +35,8 @@
             }
     
             uniform int _Points_Length = 0;
-            uniform float4 _Points [20];
-            uniform float _Radiuses [20];
+            uniform float4 _Points [100];
+            uniform float _Radiuses [100];
             uniform float _Strength;
  
             half4 frag(vertOutput output) : COLOR 

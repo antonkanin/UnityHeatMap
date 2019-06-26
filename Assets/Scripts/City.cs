@@ -13,6 +13,8 @@ public class City : MonoBehaviour
         velocity.y = Random.Range(-1.0f, 1.0f);
 
         velocity.Normalize();
+
+        velocity *= 2.0f;
     }
 
     private void Update()
@@ -26,12 +28,12 @@ public class City : MonoBehaviour
     {
         var pos = transform.position;
 
-        if (pos.x < -2.0f || pos.x > 2.0f)
+        if (pos.x < -4.0f || pos.x > 4.0f)
         {
             velocity.x *= -1.0f;
         }
 
-        if (pos.y < -2.0f || pos.y > 2.0f)
+        if (pos.y < -4.0f || pos.y > 4.0f)
         {
             velocity.y *= -1.0f;
         }

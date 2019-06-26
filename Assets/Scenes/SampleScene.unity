@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cities: {fileID: 1192521300}
-  Strength: 0.2
+  Strength: 0.05
 --- !u!64 &919887569
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -356,4 +356,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cityPrefab: {fileID: 5143556566271960839, guid: 3a1b66ec24ebd434a8ef760c7e4609ab,
     type: 3}
-  CitiesCount: 5
+  CitiesCount: 30
