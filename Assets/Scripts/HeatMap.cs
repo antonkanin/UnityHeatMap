@@ -2,9 +2,11 @@
 
 public class HeatMap : MonoBehaviour
 {
-    private Material material;
+    public Cities Cities;
 
-    public Cities cities;
+    public float Strength;
+    
+    private Material material;
 
     private void Start()
     {
@@ -13,8 +15,9 @@ public class HeatMap : MonoBehaviour
 
     private void Update()
     {
-        material.SetInt("_Points_Length", cities.Count());
-        material.SetVectorArray("_Points", cities.GetCityCenters());
-        material.SetFloatArray("_Radiuses", cities.GetCityRadiuses());
+        material.SetInt("_Points_Length", Cities.Count());
+        material.SetFloat("_Strength", Strength);
+        material.SetVectorArray("_Points", Cities.GetCityCenters());
+        material.SetFloatArray("_Radiuses", Cities.GetCityRadiuses());
     }
 }

@@ -2,7 +2,6 @@
 {
     Properties 
     {
-        
     }
     
     SubShader 
@@ -36,30 +35,28 @@
             }
     
             uniform int _Points_Length = 0;
-            uniform float4 _Points [20]; // (x, y, z) = position
-            uniform float _Radiuses [20]; // x = radius, y = intensity
+            uniform float4 _Points [20];
+            uniform float _Radiuses [20];
+            uniform float _Strength;
  
             half4 frag(vertOutput output) : COLOR 
             {
-                // Loops over all the points
                 half h = 0;
                 
                 for (int i = 0; i < _Points_Length; i ++)
                 {
-                    // Calculates the contribution of each point
                     half di = distance(output.worldPos, _Points[i].xyz);
                     
-                    // h += 0.2 / di;
-                    h += 1 - saturate(di / _Radiuses[i]);
-                    // h += _Radiuses[i] / di;
+                    if (_Strength <= 0.01)
+                    {
+                        _Strength = 0.01;
+                    }
+                    
+                    // h += 1 - saturate(di / (_Radiuses[i] * _Strength));
+                    h += _Strength * 1 / di;
                 }
                 
-                if (h < 0.7)
-                {
-                    h = 0.0;
-                }                
-                
-                return half4(h, 0, 0, 1.0);
+                return half4(h, 0, 0, 1);
             }
             
             ENDCG
