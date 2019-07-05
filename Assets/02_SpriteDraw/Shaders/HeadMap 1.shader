@@ -1,10 +1,12 @@
-﻿Shader "Custom/SpritesFilling"
+﻿Shader "Custom/SpriteFilling"
 {
 	Properties
 	{
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
+		_FillingHorizontal ("Filling Horizontal", Range(0, 1)) = 1.0 
+		_FillingVertical ("Filling Vertical", Range(0, 1)) = 1.0
 	}
 
 	SubShader
@@ -46,6 +48,8 @@
 			};
 			
 			fixed4 _Color;
+			half _FillingVertical;
+			half _FillingHorizontal;
 
 			v2f vert(appdata_t IN)
 			{
@@ -80,6 +84,12 @@
 			{
 				fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
 				c.rgb *= c.a;
+				
+				if (IN.texcoord.y > _FillingVertical || IN.texcoord.x > _FillingHorizontal)
+				{
+				    c.rgb = 0;
+				} 
+				
 				return c;
 			}
 		ENDCG
