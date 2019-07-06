@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: SpriteFilling
   m_Shader: {fileID: 4800000, guid: 071cf5f09bff3d749aa1e79e38e50a24, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _HORIZONTALDIRECTION_ON _UPDOWNDIRECTION_ON
+    _VERTICALDIRECTION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -68,10 +69,12 @@ Material:
     - _EnableExternalAlpha: 0
     - _Filling: 0.538
     - _FillingHorizontal: 1
-    - _FillingVertical: 1
+    - _FillingVertical: 0.684
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HorizontalDirection: 1
+    - _HorizontalFilling: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -80,6 +83,9 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UpDownDirection: 1
+    - _VerticalDirection: 1
+    - _VerticalFilling: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

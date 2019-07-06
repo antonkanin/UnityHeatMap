@@ -5,8 +5,12 @@
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_Color ("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
-		_FillingHorizontal ("Filling Horizontal", Range(0, 1)) = 1.0 
-		_FillingVertical ("Filling Vertical", Range(0, 1)) = 1.0
+		
+		_HorizontalFilling ("Horizontal Filling", Range(0, 1)) = 1.0
+		[Toggle] _HorizontalDirection("Horizontal Direction", float) = 1
+		 
+		_VerticalFilling ("Vertical Filling ", Range(0, 1)) = 1.0
+		[Toggle] _VerticalDirection("Vertical Direction", float) = 1
 	}
 
 	SubShader
@@ -48,8 +52,12 @@
 			};
 			
 			fixed4 _Color;
-			half _FillingVertical;
-			half _FillingHorizontal;
+			
+			half _HorizontalFilling;
+			float _HorizontalDirection;
+
+			half _VerticalFilling;
+			float _VerticalDirection;
 
 			v2f vert(appdata_t IN)
 			{
@@ -82,13 +90,16 @@
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
-				fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
+        		fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
 				c.rgb *= c.a;
-				
-				if (IN.texcoord.y > _FillingVertical || IN.texcoord.x > _FillingHorizontal)
-				{
+								
+				if ((_HorizontalDirection == 1 && IN.texcoord.x > _HorizontalFilling) ||
+				  (_HorizontalDirection == 0 && IN.texcoord.x < (1 - _HorizontalFilling)) ||
+				  ((_VerticalDirection == 1 && IN.texcoord.y > _VerticalFilling) ||
+				  (_VerticalDirection == 0 && IN.texcoord.y < 1 - _VerticalFilling)))
+    		    {
 				    c.rgb = 0;
-				} 
+			    }
 				
 				return c;
 			}
