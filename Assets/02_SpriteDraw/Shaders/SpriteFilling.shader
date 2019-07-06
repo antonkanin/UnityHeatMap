@@ -90,16 +90,17 @@
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
-        		fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
-				c.rgb *= c.a;
+        		fixed4 c = SampleSpriteTexture (IN.texcoord);
 								
 				if ((_HorizontalDirection == 1 && IN.texcoord.x > _HorizontalFilling) ||
 				  (_HorizontalDirection == 0 && IN.texcoord.x < (1 - _HorizontalFilling)) ||
 				  ((_VerticalDirection == 1 && IN.texcoord.y > _VerticalFilling) ||
 				  (_VerticalDirection == 0 && IN.texcoord.y < 1 - _VerticalFilling)))
     		    {
-				    c.rgb = 0;
+				    c *= IN.color;
 			    }
+			    
+			    c.rgb *= c.a;
 				
 				return c;
 			}
