@@ -58,6 +58,8 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _BumpScale: 1
+    - _ClickCoordX: 0.5
+    - _ClickCoordY: 0.5
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _Distance: 0

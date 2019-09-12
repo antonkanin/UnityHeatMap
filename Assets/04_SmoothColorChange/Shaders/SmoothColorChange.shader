@@ -5,6 +5,8 @@
     	_MainTex ("Sprite Texture", 2D) = "white" {}
     	_Color ("Tint", Color) = (1,1,1,1)
 		_Distance ("Distance", Float) = 0
+		_ClickCoordX("ClickCoordX", Float) = 0.5 
+		_ClickCoordY("ClickCoordY", Float) = 0.5 
 	}
 
     SubShader {
@@ -20,12 +22,14 @@
       
       sampler2D _MainTex;
       float _Distance;
+      float _ClickCoordX;
+      float _ClickCoordY;
       
       void surf (Input IN, inout SurfaceOutput o) 
       {
           o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
           
-          float distance = length(float2(IN.uv_MainTex.x - 0.5f, IN.uv_MainTex.y - 0.5f));
+          float distance = length(float2(IN.uv_MainTex.x - _ClickCoordX, IN.uv_MainTex.y - _ClickCoordY));
           
           if (distance < _Distance)
           {
